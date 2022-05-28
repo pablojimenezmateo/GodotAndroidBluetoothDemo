@@ -23,23 +23,36 @@ func _ready():
 		GodotBluetooth344.connect("_on_bluetooth_status_change", self, "_on_bluetooth_status_change")
 		GodotBluetooth344.connect("_on_location_status_change", self, "_on_location_status_change")
 		GodotBluetooth344.connect("_on_connection_status_change", self, "_on_connection_status_change")
+		GodotBluetooth344.connect("_on_characteristic_read", self, "_on_characteristic_read")
+
+func _on_characteristic_read(characteristic):
+	
+	# characteristic is a dictionary with the following keys
+	# * service_uuid: The serice UUID
+	# * characteristic_uuid: The characteristic UUID
+	# * real_mask: The mask of the characteristic, for more information check: https://developer.android.com/reference/android/bluetooth/BluetoothGattCharacteristic.html#getProperties()
+	# * readable: If this characteristic is readable
+	# * writable: If this characteristic is writable
+	# * writable_no_response: If this characteristic is writable with no response
+	log_string("[_on_characteristic_read] " + str(characteristic))
 
 func _on_connection_status_change(status):
-	# There can be 2 states:
+	# There can be 3 status:
 	# * connected
 	# * disconnected
+	# * An integer, this means an error, check https://developer.android.com/reference/android/bluetooth/BluetoothGatt.html#constants_2 for more information
 	log_string("[_on_connection_status_change] " + status)
 
 func _on_location_status_change(status):
 	
-	# There can be 2 states:
+	# There can be 2 status:
 	# * on
 	# * off
 	log_string("[_on_location_status_change] " + status)
 
 func _on_bluetooth_status_change(status):
 	
-	# There can be 4 states:
+	# There can be 4 status:
 	# * on
 	# * turning_on
 	# * off
@@ -68,6 +81,10 @@ func _on_debug_message(s):
 	log_string("[DEBUG] " + s)
 
 func _on_device_found(new_device):
+	# new_device is a dictionary with the following keys:
+	# * address: MAC address of the device
+	# * name: Name of the device
+	# * rssi: Signal strength of the device in dBm
 	
 	log_string("Got a new device: " + str(new_device))
 	devices.append(new_device)
