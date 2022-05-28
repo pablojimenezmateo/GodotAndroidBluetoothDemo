@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\Gef\\Documents\\GodotBluetooth3.4.4\\GodotProject\\SimpleExample\\android\\build\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-tr\\values-tr.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Gef\\Documents\\GodotBluetooth3.4.4\\GodotProject\\SimpleExample\\android\\build\\res\\values-tr\\godot_project_name_string.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "1",
+                        "startOffsets": "112",
+                        "endColumns": "69",
+                        "endOffsets": "180"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "72",
+                        "endOffsets": "123"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Gef\\.gradle\\caches\\transforms-3\\f468396e8f36529b92fb98842a149f3b\\transformed\\core-1.2.0\\res\\values-tr\\values-tr.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "128",
+                        "endColumns": "100",
+                        "endOffsets": "224"
+                    }
+                }
+            ]
+        }
+    ]
+}
