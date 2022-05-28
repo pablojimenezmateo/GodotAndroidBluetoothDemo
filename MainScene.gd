@@ -1,6 +1,14 @@
 extends Control
 
 var GodotBluetooth344
+
+var location_permissions
+var location_status
+var bluetooth_status
+
+var devices = []
+var item_selected
+
 onready var devices_list = $VBoxContainer/Devices/FoundDevicesList
 onready var log_node = $VBoxContainer/Log/Log
 
@@ -14,6 +22,13 @@ func _ready():
 		GodotBluetooth344.connect("_on_device_found", self, "_on_device_found")
 		GodotBluetooth344.connect("_on_bluetooth_status_change", self, "_on_bluetooth_status_change")
 		GodotBluetooth344.connect("_on_location_status_change", self, "_on_location_status_change")
+		GodotBluetooth344.connect("_on_connection_status_change", self, "_on_connection_status_change")
+
+func _on_connection_status_change(status):
+	# There can be 2 states:
+	# * connected
+	# * disconnected
+	log_string("[_on_connection_status_change] " + status)
 
 func _on_location_status_change(status):
 	
@@ -55,10 +70,16 @@ func _on_debug_message(s):
 func _on_device_found(new_device):
 	
 	log_string("Got a new device: " + str(new_device))
+	devices.append(new_device)
 	devices_list.add_item(new_device.name + " " + new_device.address + " " + str(new_device.rssi))
 
-func _on_bluetoothButton_button_up():
-		
+func _on_scanButton_button_up():
+	
+	# Erase the results from the previous scan
+	devices = []
+	devices_list.clear()
+	item_selected = null
+	
 	GodotBluetooth344.scan()
 	
 # Prints and writes to the log
@@ -72,3 +93,25 @@ func log_string(s):
 	log_node.add_text(text + "\n")
 	print(text)
 	
+
+
+func _on_ConnectButton_button_up():
+	
+	if item_selected != null:
+		
+		var address = devices[item_selected].address
+		
+		log_string("Connecting to " + address)
+		
+		GodotBluetooth344.connect(address)
+
+
+func _on_DisconnectButton_button_up():
+	
+	GodotBluetooth344.disconnect()
+
+
+# When a device on the list is selected, save the index
+func _on_FoundDevicesList_item_selected(index):
+	
+	item_selected = index

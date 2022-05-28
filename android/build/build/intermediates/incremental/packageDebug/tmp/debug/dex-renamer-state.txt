@@ -1,4 +1,4 @@
-#Fri May 27 19:16:26 GMT-05:00 2022
+#Sat May 28 16:29:24 GMT-05:00 2022
 base.2=C\:\\Users\\Gef\\Documents\\GodotBluetooth3.4.4\\GodotProject\\SimpleExample\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
 path.2=6/classes.dex
 base.1=C\:\\Users\\Gef\\Documents\\GodotBluetooth3.4.4\\GodotProject\\SimpleExample\\android\\build\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex

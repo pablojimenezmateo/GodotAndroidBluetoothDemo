@@ -31,13 +31,13 @@
 21        android:name="android.permission.BLUETOOTH"
 21-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\src\debug\AndroidManifest.xml:12:22-65
 22        android:maxSdkVersion="30" />
-22-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:12:9-35
+22-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:12:9-35
 23    <uses-permission
 23-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\src\debug\AndroidManifest.xml:13:5-74
 24        android:name="android.permission.BLUETOOTH_ADMIN"
 24-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\src\debug\AndroidManifest.xml:13:22-71
 25        android:maxSdkVersion="30" />
-25-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:15:9-35
+25-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:15:9-35
 26    <uses-permission android:name="android.permission.INTERNET" />
 26-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\src\debug\AndroidManifest.xml:14:5-67
 26-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\src\debug\AndroidManifest.xml:14:22-64
@@ -66,22 +66,22 @@
 41         doesn't derive physical location.
 42    -->
 43    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
-43-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:23:5-73
-43-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:23:22-70
+43-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:23:5-73
+43-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:23:22-70
 44    <!--
 45         Needed only if your app makes the device discoverable to Bluetooth
 46         devices.
 47    -->
 48    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-48-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:29:5-78
-48-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:29:22-75
+48-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:29:5-78
+48-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:29:22-75
 49    <!--
 50         Needed only if your app communicates with already-paired Bluetooth
 51         devices.
 52    -->
 53    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-53-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:35:5-76
-53-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:35:22-73
+53-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:35:5-76
+53-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:35:22-73
 54
 55    <application
 55-->C:\Users\Gef\Documents\GodotBluetooth3.4.4\GodotProject\SimpleExample\android\build\AndroidManifest.xml:31:5-87:19
@@ -153,11 +153,11 @@
 93-->[godot-lib.debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\b35bc23b2fd7ec894ca9e79e551d92ff\transformed\jetified-godot-lib.debug\AndroidManifest.xml:23:18-77
 94
 95        <meta-data
-95-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:42:9-44:78
+95-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:42:9-44:78
 96            android:name="org.godotengine.plugin.v1.GodotBluetooth344"
-96-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:43:13-71
+96-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:43:13-71
 97            android:value="com.example.godotbluetooth344.BluetoothManager" />
-97-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\60671dd120315c24f54e94aa4ed07a0a\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:44:13-75
+97-->[GodotBluetooth344-debug.aar] C:\Users\Gef\.gradle\caches\transforms-3\04b9542858da1a0504c5002499cda45b\transformed\jetified-GodotBluetooth344-debug\AndroidManifest.xml:44:13-75
 98    </application>
 99
 100</manifest>
