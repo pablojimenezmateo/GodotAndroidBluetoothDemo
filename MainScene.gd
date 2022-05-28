@@ -42,6 +42,9 @@ func _on_connection_status_change(status):
 	# * disconnected
 	# * An integer, this means an error, check https://developer.android.com/reference/android/bluetooth/BluetoothGatt.html#constants_2 for more information
 	log_string("[_on_connection_status_change] " + status)
+	
+	if status == "connected":
+		GodotBluetooth344.listServicesAndCharacteristics()
 
 func _on_location_status_change(status):
 	
