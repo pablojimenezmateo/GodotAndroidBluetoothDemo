@@ -145,6 +145,9 @@ func check_permissions():
 	location_permission = boolean
 	
 	set_location_permission()
+	set_bluetooth_status()
+	set_location_status()
+	set_location_permission()
 	
 func _on_debug_message(s):
 	print(s)
