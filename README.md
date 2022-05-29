@@ -36,7 +36,7 @@ This versions have been tested:
 
 **After sending text**
 
-![SendText](images/SendText.jpg)
+![SendText](images/SentText.jpg)
 
 **After receiving text**
 
