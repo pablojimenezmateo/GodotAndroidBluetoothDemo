@@ -2,17 +2,18 @@ extends Control
 
 var GodotBluetooth344
 
-var location_permissions
+var location_permission
 var location_status
 var bluetooth_status
+var connected
 
 var devices = []
 var item_selected
 
 # Test UUIDs
 var service_uuid = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
-var read_uuid = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
-var write_uuid = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
+var read_uuid    = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
+var write_uuid   = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
 
 onready var devices_list = $VBoxContainer/Devices/FoundDevicesList
 onready var log_node = $VBoxContainer/Log/Log
@@ -33,6 +34,13 @@ func _ready():
 		GodotBluetooth344.connect("_on_characteristic_finding", self, "_on_characteristic_finding")
 		GodotBluetooth344.connect("_on_characteristic_read", self, "_on_characteristic_read")
 
+	# Check the permissions
+	check_permissions()
+	
+	connected = false
+	set_connected()
+	
+	
 func _on_characteristic_read(data):
 	# data is a dictionary with the following keys
 	# * service_uuid: The serice UUID
@@ -40,12 +48,12 @@ func _on_characteristic_read(data):
 	# * bytes: They raw bytes of the payload
 	log_string("[_on_characteristic_read] " + str(data.characteristic_uuid))
 	
-	print(data.bytes)
+	log_string(str(data.bytes))
 	
 	# If your bytes represent a UTF-8 string, use the 
 	# following code:
 	var string = PoolByteArray(data.bytes).get_string_from_utf8()
-	print(string)
+	log_string(string)
 
 func _on_characteristic_finding(status):
 	# There can be 2 status:
@@ -79,6 +87,11 @@ func _on_connection_status_change(status):
 	# call listServicesAndCharacteristics() once connected
 	if status == "connected":
 		GodotBluetooth344.listServicesAndCharacteristics()
+		connected = true
+	else:
+		connected = false
+	
+	set_connected()
 
 func _on_location_status_change(status):
 	
@@ -86,7 +99,15 @@ func _on_location_status_change(status):
 	# * on
 	# * off
 	log_string("[_on_location_status_change] " + status)
+	
+	if status == "on":
+		
+		location_status = true
+	else:
+		location_status = false
 
+	set_location_status()
+	
 func _on_bluetooth_status_change(status):
 	
 	# There can be 4 status:
@@ -96,22 +117,34 @@ func _on_bluetooth_status_change(status):
 	# * turning_off
 	log_string("[_on_bluetooth_status_change] " + status)
 	
-func _on_Button_button_up():
+	if status == "on":
+		
+		bluetooth_status = true
+	else:
+		bluetooth_status = false
+		
+	set_bluetooth_status()
+	
+func check_permissions():
 	
 	var boolean
 	
 	log_string("Checking bluetooth status")
 	boolean = GodotBluetooth344.bluetoothStatus()
 	log_string(boolean)
+	bluetooth_status = boolean
 		
 	log_string("Checking location status")
 	boolean = GodotBluetooth344.locationStatus()
 	log_string(boolean)
+	location_status = boolean
 	
 	log_string("Checking location permissions")
 	boolean = GodotBluetooth344.hasLocationPermissions()
 	log_string(boolean)
+	location_permission = boolean
 	
+	set_location_permission()
 	
 func _on_debug_message(s):
 	print(s)
@@ -134,6 +167,7 @@ func _on_scanButton_button_up():
 	devices = []
 	devices_list.clear()
 	item_selected = null
+	set_buttons()
 	
 	GodotBluetooth344.scan()
 	
@@ -166,6 +200,7 @@ func _on_DisconnectButton_button_up():
 func _on_FoundDevicesList_item_selected(index):
 	
 	item_selected = index
+	set_buttons()
 
 func _on_SendTextButton_button_up():
 		
@@ -174,4 +209,82 @@ func _on_SendTextButton_button_up():
 	if text != "":
 		
 		GodotBluetooth344.writeStringToCharacteristic(service_uuid, write_uuid, text)
+		
+# UI helpers
+onready var bluetooth_label = $VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer/BluetoohStatusLabel2
+onready var location_label = $VBoxContainer/TopLabels/VBoxContainer/HBoxContainer3/LocationStatusLabel2
+onready var location_permission_label = $VBoxContainer/TopLabels/VBoxContainer/HBoxContainer/LocationPermissionLabel2
+onready var connected_label = $VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer2/ConnectedLabel2
+
+func set_bluetooth_status():
+	
+	if bluetooth_status:
+		
+		bluetooth_label.text = "On"
+	else:
+		bluetooth_label.text = "Off"
+		
+	set_buttons()
+	
+func set_location_status():
+	
+	if location_status:
+		
+		location_label.text = "On"
+	else:
+		location_label.text = "Off"
+		
+	set_buttons()
+	
+func set_location_permission():
+	
+	if location_permission:
+		
+		location_permission_label.text = "Yes"
+	else:
+		location_permission_label.text = "No"
+		
+	set_buttons()
+	
+func set_connected():
+	
+	if connected:
+		
+		connected_label.text = "Yes"
+	else:
+		connected_label.text = "No"
+		
+	set_buttons()
+
+onready var send_button = $VBoxContainer/TextAndButtons/HBoxContainer/SendTextButton
+onready var scan_button = $VBoxContainer/TextAndButtons/Buttons/ScanButton
+onready var connect_button = $VBoxContainer/TextAndButtons/Buttons/ConnectButton
+onready var disconnect_button = $VBoxContainer/TextAndButtons/Buttons/DisconnectButton
+
+func set_buttons():
+	
+	send_button.disabled = true
+	scan_button.disabled = true
+	connect_button.disabled = true
+	disconnect_button.disabled = true
+	
+	# We need all 3 things to be able to scan
+	if bluetooth_status and location_status and location_permission and not connected:
+		
+		# It is not necessary to disable the button when connected,
+		# we can scan while connected but shows the workflow more clear
+		# for the demo
+		scan_button.disabled = false
+	
+	# If we have selected a device, enable the connect button
+	if bluetooth_status and location_status and location_permission and item_selected != null and not connected:
+		
+		connect_button.disabled = false
+		
+	if bluetooth_status and location_status and location_permission and connected:
+		
+		send_button.disabled = false
+		disconnect_button.disabled = false
+		
+		
 		

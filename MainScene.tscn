@@ -40,12 +40,12 @@ margin_right = 498.0
 margin_bottom = 49.0
 size_flags_horizontal = 3
 
-[node name="LocationPermissionsLabel" type="Label" parent="VBoxContainer/TopLabels/VBoxContainer/HBoxContainer"]
+[node name="LocationPermissionLabel" type="Label" parent="VBoxContainer/TopLabels/VBoxContainer/HBoxContainer"]
 margin_right = 290.0
 margin_bottom = 49.0
 text = "Loc. permissions: "
 
-[node name="LocationPermissionsLabel2" type="Label" parent="VBoxContainer/TopLabels/VBoxContainer/HBoxContainer"]
+[node name="LocationPermissionLabel2" type="Label" parent="VBoxContainer/TopLabels/VBoxContainer/HBoxContainer"]
 margin_left = 294.0
 margin_right = 342.0
 margin_bottom = 49.0
@@ -73,14 +73,36 @@ margin_top = 53.0
 margin_right = 1000.0
 margin_bottom = 102.0
 
-[node name="BluetoohStatusLabel" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopLabels/HBoxContainer2"]
+margin_right = 498.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+
+[node name="BluetoohStatusLabel" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer"]
 margin_right = 285.0
 margin_bottom = 49.0
 text = "Bluetooth status: "
 
-[node name="BluetoohStatusLabel2" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2"]
+[node name="BluetoohStatusLabel2" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer"]
 margin_left = 289.0
 margin_right = 337.0
+margin_bottom = 49.0
+text = "On"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TopLabels/HBoxContainer2"]
+margin_left = 502.0
+margin_right = 1000.0
+margin_bottom = 49.0
+size_flags_horizontal = 3
+
+[node name="ConnectedLabel" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer2"]
+margin_right = 184.0
+margin_bottom = 49.0
+text = "Connected:"
+
+[node name="ConnectedLabel2" type="Label" parent="VBoxContainer/TopLabels/HBoxContainer2/HBoxContainer2"]
+margin_left = 188.0
+margin_right = 236.0
 margin_bottom = 49.0
 text = "On"
 
