@@ -129,11 +129,23 @@ margin_right = 1000.0
 margin_bottom = 2190.0
 size_flags_horizontal = 3
 
-[node name="SendTextLine" type="LineEdit" parent="VBoxContainer/TextAndButtons"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TextAndButtons"]
 margin_right = 1000.0
 margin_bottom = 59.0
 size_flags_horizontal = 3
+
+[node name="SendTextLine" type="LineEdit" parent="VBoxContainer/TextAndButtons/HBoxContainer"]
+margin_right = 498.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
 placeholder_text = "Send text"
+
+[node name="SendTextButton" type="Button" parent="VBoxContainer/TextAndButtons/HBoxContainer"]
+margin_left = 502.0
+margin_right = 1000.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+text = "Send"
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/TextAndButtons"]
 margin_top = 63.0
@@ -142,33 +154,27 @@ margin_bottom = 118.0
 size_flags_horizontal = 3
 
 [node name="ScanButton" type="Button" parent="VBoxContainer/TextAndButtons/Buttons"]
-margin_right = 247.0
+margin_right = 330.0
 margin_bottom = 55.0
 size_flags_horizontal = 3
 text = "Scan"
 
 [node name="ConnectButton" type="Button" parent="VBoxContainer/TextAndButtons/Buttons"]
-margin_left = 251.0
-margin_right = 498.0
+margin_left = 334.0
+margin_right = 665.0
 margin_bottom = 55.0
 size_flags_horizontal = 3
 text = "Connect"
 
 [node name="DisconnectButton" type="Button" parent="VBoxContainer/TextAndButtons/Buttons"]
-margin_left = 502.0
-margin_right = 749.0
+margin_left = 669.0
+margin_right = 1000.0
 margin_bottom = 55.0
 size_flags_horizontal = 3
 text = "Disconnect"
 
-[node name="SendTextButton" type="Button" parent="VBoxContainer/TextAndButtons/Buttons"]
-margin_left = 753.0
-margin_right = 1000.0
-margin_bottom = 55.0
-size_flags_horizontal = 3
-text = "Send"
-
 [connection signal="item_selected" from="VBoxContainer/Devices/FoundDevicesList" to="." method="_on_FoundDevicesList_item_selected"]
+[connection signal="button_up" from="VBoxContainer/TextAndButtons/HBoxContainer/SendTextButton" to="." method="_on_SendTextButton_button_up"]
 [connection signal="button_up" from="VBoxContainer/TextAndButtons/Buttons/ScanButton" to="." method="_on_scanButton_button_up"]
 [connection signal="button_up" from="VBoxContainer/TextAndButtons/Buttons/ConnectButton" to="." method="_on_ConnectButton_button_up"]
 [connection signal="button_up" from="VBoxContainer/TextAndButtons/Buttons/DisconnectButton" to="." method="_on_DisconnectButton_button_up"]

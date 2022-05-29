@@ -9,8 +9,14 @@ var bluetooth_status
 var devices = []
 var item_selected
 
+# Test UUIDs
+var service_uuid = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
+var read_uuid = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
+var write_uuid = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
+
 onready var devices_list = $VBoxContainer/Devices/FoundDevicesList
 onready var log_node = $VBoxContainer/Log/Log
+onready var send_line_edit = $VBoxContainer/TextAndButtons/HBoxContainer/SendTextLine
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +30,18 @@ func _ready():
 		GodotBluetooth344.connect("_on_location_status_change", self, "_on_location_status_change")
 		GodotBluetooth344.connect("_on_connection_status_change", self, "_on_connection_status_change")
 		GodotBluetooth344.connect("_on_characteristic_read", self, "_on_characteristic_read")
-
+		GodotBluetooth344.connect("_on_characteristic_reading", self, "_on_characteristic_reading")
+		
+func _on_characteristic_reading(status):
+	# There can be 2 status:
+	# * processing
+	# * done
+	
+	log_string("[_on_characteristic_reading] " + str(status))
+	
+	if status == "done":
+		GodotBluetooth344.subscribeToCharacteristic(service_uuid, read_uuid)
+	
 func _on_characteristic_read(characteristic):
 	
 	# characteristic is a dictionary with the following keys
@@ -43,6 +60,8 @@ func _on_connection_status_change(status):
 	# * An integer, this means an error, check https://developer.android.com/reference/android/bluetooth/BluetoothGatt.html#constants_2 for more information
 	log_string("[_on_connection_status_change] " + status)
 	
+	# If you do not know the services and characteristics of the peer device
+	# call listServicesAndCharacteristics() once connected
 	if status == "connected":
 		GodotBluetooth344.listServicesAndCharacteristics()
 
@@ -80,6 +99,7 @@ func _on_Button_button_up():
 	
 	
 func _on_debug_message(s):
+	print(s)
 	
 	log_string("[DEBUG] " + s)
 
@@ -113,8 +133,6 @@ func log_string(s):
 	log_node.add_text(text + "\n")
 	print(text)
 	
-
-
 func _on_ConnectButton_button_up():
 	
 	if item_selected != null:
@@ -125,13 +143,20 @@ func _on_ConnectButton_button_up():
 		
 		GodotBluetooth344.connect(address)
 
-
 func _on_DisconnectButton_button_up():
 	
 	GodotBluetooth344.disconnect()
-
 
 # When a device on the list is selected, save the index
 func _on_FoundDevicesList_item_selected(index):
 	
 	item_selected = index
+
+func _on_SendTextButton_button_up():
+		
+	var text = send_line_edit.text
+	
+	if text != "":
+		
+		GodotBluetooth344.writeToCharacteristic(service_uuid, write_uuid, text)
+		
