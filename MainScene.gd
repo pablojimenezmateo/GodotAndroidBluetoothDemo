@@ -29,20 +29,35 @@ func _ready():
 		GodotBluetooth344.connect("_on_bluetooth_status_change", self, "_on_bluetooth_status_change")
 		GodotBluetooth344.connect("_on_location_status_change", self, "_on_location_status_change")
 		GodotBluetooth344.connect("_on_connection_status_change", self, "_on_connection_status_change")
+		GodotBluetooth344.connect("_on_characteristic_found", self, "_on_characteristic_found")
+		GodotBluetooth344.connect("_on_characteristic_finding", self, "_on_characteristic_finding")
 		GodotBluetooth344.connect("_on_characteristic_read", self, "_on_characteristic_read")
-		GodotBluetooth344.connect("_on_characteristic_reading", self, "_on_characteristic_reading")
-		
-func _on_characteristic_reading(status):
+
+func _on_characteristic_read(data):
+	# data is a dictionary with the following keys
+	# * service_uuid: The serice UUID
+	# * characteristic_uuid: The characteristic UUID
+	# * bytes: They raw bytes of the payload
+	log_string("[_on_characteristic_read] " + str(data.characteristic_uuid))
+	
+	print(data.bytes)
+	
+	# If your bytes represent a UTF-8 string, use the 
+	# following code:
+	var string = PoolByteArray(data.bytes).get_string_from_utf8()
+	print(string)
+
+func _on_characteristic_finding(status):
 	# There can be 2 status:
 	# * processing
 	# * done
 	
-	log_string("[_on_characteristic_reading] " + str(status))
+	log_string("[_on_characteristic_finding] " + str(status))
 	
 	if status == "done":
 		GodotBluetooth344.subscribeToCharacteristic(service_uuid, read_uuid)
 	
-func _on_characteristic_read(characteristic):
+func _on_characteristic_found(characteristic):
 	
 	# characteristic is a dictionary with the following keys
 	# * service_uuid: The serice UUID
@@ -51,7 +66,7 @@ func _on_characteristic_read(characteristic):
 	# * readable: If this characteristic is readable
 	# * writable: If this characteristic is writable
 	# * writable_no_response: If this characteristic is writable with no response
-	log_string("[_on_characteristic_read] " + str(characteristic))
+	log_string("[_on_characteristic_found] " + str(characteristic))
 
 func _on_connection_status_change(status):
 	# There can be 3 status:
@@ -158,5 +173,5 @@ func _on_SendTextButton_button_up():
 	
 	if text != "":
 		
-		GodotBluetooth344.writeToCharacteristic(service_uuid, write_uuid, text)
+		GodotBluetooth344.writeStringToCharacteristic(service_uuid, write_uuid, text)
 		
