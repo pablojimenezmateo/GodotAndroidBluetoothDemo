@@ -286,5 +286,6 @@ func set_buttons():
 		send_button.disabled = false
 		disconnect_button.disabled = false
 		
-		
-		
+
+func _on_Button_button_up():
+	GodotBluetooth344.askToEnableBluetooth()
