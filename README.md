@@ -19,24 +19,31 @@ This versions have been tested:
 ## Screenshots
 
 **Bluetooth off**
+
 ![BluetoothOff](images/BluetoothOff.jpg)
 
 **Bluetooth on**
+
 ![BluetoothOn](images/BluetoothOn.jpg)
 
 **After scanning**
+
 ![Scan](images/Scan.jpg)
 
 **After connecting**
+
 ![Connect](images/Connect.jpg)
 
 **After sending text**
+
 ![SendText](images/SendText.jpg)
 
 **After receiving text**
+
 ![ReceiveText](images/ReceiveText.jpg)
 
 **After disconnecting**
+
 ![Disconnect](images/Disconnect.jpg)
 
 
